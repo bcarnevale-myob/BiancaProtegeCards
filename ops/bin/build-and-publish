@@ -1,0 +1,14 @@
+
+#! /usr/bin/env bash
+set -eo pipefail
+
+appImage="945367126992.dkr.ecr.ap-southeast-2.amazonaws.com/bianca-protege-cards:${BUILD_NUMBER:-local}"
+localref="bianca-protege-cards:latest"
+
+echo "--- Login to ECR"
+$(aws ecr get-login --no-include-email --region ap-southeast-2)
+
+echo "--- Build and publish app image"
+docker build -f Dockerfile.app -t $localref $(pwd)
+docker tag $localref $appImage
+docker push $appImage

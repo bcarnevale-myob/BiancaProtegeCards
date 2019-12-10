@@ -1,0 +1,88 @@
+{
+  "cards": [
+    {
+      "id": 0,
+      "number": 1,
+      "heading": "Linux",
+      "topics": ["Basic commands", "Dir structure", "Permissions"],
+      "acceptanceCriteria": ["Explain the basics of Linux like I am new"]
+    },
+    {
+      "id": 1,
+      "number": 2,
+      "heading": "Linux Netowrking",
+      "topics": ["IPs", "Netmasks", "DNS", "HTTP", "OSI"],
+      "acceptanceCriteria": ["Whiteboard what happens when you go to myob.com"]
+    },
+    {
+      "id": 2,
+      "number": 3,
+      "heading": "AWS",
+      "topics": ["VPCs", "DNS", "BGP", "CDNs", "Security Groups", "NACL", "Routing Table", "Gateway"],
+      "acceptanceCriteria": ["Whiteboard the structure of a VPC"]
+    },
+    {
+      "id": 3,
+      "number": 4,
+      "heading": "Docker",
+      "topics": ["Basics", "Compose", "Networking"],
+      "acceptanceCriteria": ["Whiteboard container architecture and networking", "Dockerize something"]
+    },
+    {
+      "id": 4,
+      "number": 5,
+      "heading": "Kubernetes",
+      "topics": ["Basic objects", "Basic concepts"],
+      "acceptanceCriteria": ["Deploy an app and explain what happened"]
+    },
+    {
+      "id": 5,
+      "number": 6,
+      "heading": "Kubernetes Advanced",
+      "topics": ["Advanced concepts", "Templating"],
+      "acceptanceCriteria": ["Explain what, why and how on the following: secrets, configmaps, volumes", "Explain what 'parameterization' is and why and how it's used"]
+    },
+    {
+      "id": 6,
+      "number": 7,
+      "heading": "Jupiter",
+      "topics": ["Buildkite", "Registries"],
+      "acceptanceCriteria": ["Create a pipeline", "Build and deploy"]
+    },
+    {
+      "id": 7,
+      "number": 8,
+      "heading": "Jupiter II",
+      "topics": ["Prometheus", "Grafana"],
+      "acceptanceCriteria": ["Whiteboard", "Create alerts", "Create scaling rules"]
+    },
+    {
+      "id": 8,
+      "number": 9,
+      "heading": "Jupiter III",
+      "topics": ["Logs", "Log Central", "Sumo Logic", "Cloudwatch"],
+      "acceptanceCriteria": ["Whiteboard", "Demonstrate"]
+    },
+    {
+      "id": 9,
+      "number": 10,
+      "heading": "Jupiter IV",
+      "topics": ["Redwine"],
+      "acceptanceCriteria": ["Whiteboard all of Jupiter"]
+    },
+    {
+      "id": 10,
+      "number": 11,
+      "heading": "Practical",
+      "topics": ["Help the crew productionize a system"],
+      "acceptanceCriteria": ["Timeline: 10 days"]
+    },
+    {
+      "id": 11,
+      "number": 12,
+      "heading": "Mock Interview",
+      "topics": ["Mock interview as a DevOps Engineer"],
+      "acceptanceCriteria": ["You receive a Jupiter certificate!"]
+    }
+  ]
+}

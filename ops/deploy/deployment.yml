@@ -1,0 +1,72 @@
+---
+kind: "Template"
+apiVersion: "v1"
+metadata:
+  name: "Deployment"
+  annotations:
+    description: "Europa Preprod deployment for Protege Cards"
+labels:
+  template: "Deployment"
+objects:
+
+  - kind: Deployment
+    apiVersion: apps/v1beta2
+    metadata:
+      name: "bianca-protege-cards-deployment"
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          app: "bianca-protege-cards"
+      template:
+        metadata:
+          labels:
+            app: "bianca-protege-cards"
+        spec:
+          containers:
+            - image: "945367126992.dkr.ecr.ap-southeast-2.amazonaws.com/bianca-protege-cards:$(imageTag)"
+              name: bianca-protege-cards-web
+              ports:
+                - containerPort: 80
+
+
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+      name: "bianca-protege-cards-service"
+    spec:
+      ports:
+        - port: 80
+          targetPort: 80
+      selector:
+        app: "bianca-protege-cards"
+
+
+  - kind: Ingress
+    apiVersion: extensions/v1beta1
+    metadata:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+        nginx.ingress.kubernetes.io/whitelist-source-range: 59.100.228.148/30,49.255.232.68/30,203.34.100.0/24,210.10.213.48/30,61.68.26.8/30,49.255.235.122/31,111.69.34.208/28,202.50.111.0/24,210.10.223.196/30,210.10.223.248/30,49.255.235.66/31,203.20.70.0/24,111.69.51.32/28,49.255.41.118/30
+      name: "bianca-protege-cards"
+    spec:
+      rules:
+        - host: "bianca-protege-cards-web.svc.platform.myobdev.com"
+          http:
+            paths:
+              - backend:
+                  serviceName: "bianca-protege-cards-service"
+                  servicePort: 80
+                path: /
+      tls:
+        - hosts:
+            - "bianca-protege-cards-web.svc.platform.myobdev.com"
+          secretName: "bianca-protege-cards-tls"
+
+parameters:
+  - name: "imageTag"
+    description: "Image Tag"
+    required: true
+    parameterType: int

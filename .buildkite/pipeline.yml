@@ -1,0 +1,27 @@
+steps:
+  - label: ":hammer: Build and Test my app"
+    command:
+      - docker build -f Dockerfile -t bianca-protege-cards .
+      - docker run --rm bianca-protege-cards
+    agents:
+      queue: fma-dev-dflt
+
+  - wait
+
+  - name: ':rocket: Build and Publish Docker Image'
+    command: ./ops/bin/build-and-publish
+    branches: master
+    env:
+      BUILD_NUMBER: ${BUILDKITE_BUILD_NUMBER}
+    agents:
+      queue: fma-dev-dflt
+
+  - wait
+
+  - name: ':partyparrot: Deploy to Europa Preprod'
+    command: ./ops/bin/deploy
+    branches: master
+    env:
+      BUILD_NUMBER: ${BUILDKITE_BUILD_NUMBER}
+    agents:
+      queue: europa-preprod-fma

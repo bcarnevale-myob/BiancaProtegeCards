@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+
+echo "--- Deploying to Europa Preprod"
+
+ktmpl $(pwd)/ops/deploy/deployment.yml \
+--parameter imageTag $BUILD_NUMBER | kubectl apply -f -
